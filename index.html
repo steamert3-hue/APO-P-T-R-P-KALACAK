@@ -2,648 +2,1136 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Şehitlerimiz | Vatan İçin</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Şehitlerimiz</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;background:#070707;color:#fff}
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{font-family:inherit}
+
+nav{
+position:fixed;top:0;left:0;width:100%;height:70px;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 7%;z-index:1000;
+background:rgba(0,0,0,.85);backdrop-filter:blur(12px);
+border-bottom:1px solid #252525
 }
 
-html {
-    scroll-behavior: smooth;
+.logo{font-size:24px;font-weight:900;letter-spacing:3px}
+.logo span{color:#c00000}
+
+.nav-links{display:flex;gap:25px}
+.nav-links a{font-size:13px;color:#aaa;transition:.3s}
+.nav-links a:hover{color:#d00000}
+
+.hero{
+height:100vh;min-height:650px;
+display:flex;align-items:center;justify-content:center;
+text-align:center;position:relative;overflow:hidden;
+background:
+radial-gradient(circle at center,rgba(130,0,0,.5),transparent 45%),
+linear-gradient(135deg,#180000,#030303 60%,#0b0000)
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #080808;
-    color: #fff;
+.hero:before{
+content:"";position:absolute;width:600px;height:600px;
+border:1px solid rgba(255,0,0,.15);border-radius:50%;
+animation:pulse 5s infinite
 }
 
-/* NAVBAR */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    background: rgba(5,5,5,.94);
-    border-bottom: 1px solid #292929;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 7%;
-    z-index: 999;
-    backdrop-filter: blur(10px);
+.flag{
+position:absolute;font-size:120px;opacity:.08;
+animation:float 5s ease-in-out infinite
 }
 
-.logo {
-    font-size: 21px;
-    font-weight: 900;
-    letter-spacing: 2px;
+.hero-content{position:relative;z-index:2}
+.hero-small{color:#b00000;font-size:12px;font-weight:bold;letter-spacing:5px}
+.hero h1{font-size:clamp(45px,8vw,95px);letter-spacing:7px;margin:18px 0}
+.hero-text{color:#999;letter-spacing:3px}
+
+.btn{
+display:inline-block;margin-top:30px;padding:15px 30px;
+border:1px solid #a00000;font-weight:bold;font-size:13px;
+transition:.3s
+}
+.btn:hover{background:#a00000;transform:translateY(-4px)}
+
+@keyframes pulse{
+0%,100%{transform:scale(.8);opacity:.1}
+50%{transform:scale(1.15);opacity:.4}
+}
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-20px)}
 }
 
-.logo span {
-    color: #b00000;
+.stats{
+display:grid;grid-template-columns:repeat(3,1fr);
+background:#0c0c0c;border-top:1px solid #222;border-bottom:1px solid #222
+}
+.stat{text-align:center;padding:30px;border-right:1px solid #222}
+.stat:last-child{border:0}
+.stat strong{display:block;color:#c00000;font-size:34px}
+.stat span{font-size:11px;color:#777;letter-spacing:2px}
+
+section{padding:100px 7%}
+
+.heading{text-align:center;margin-bottom:45px}
+.heading span{font-size:11px;color:#b00000;font-weight:bold;letter-spacing:4px}
+.heading h2{font-size:43px;margin:12px 0}
+.heading p{color:#777}
+
+.search{
+max-width:850px;margin:0 auto 40px;
+display:flex;gap:10px
+}
+.search input,.search select{
+background:#111;border:1px solid #292929;
+color:#fff;padding:15px;outline:none
+}
+.search input{flex:1}
+
+.cards{
+max-width:1250px;margin:auto;
+display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 30px;
+.card{
+background:#101010;border:1px solid #252525;
+overflow:hidden;cursor:pointer;transition:.35s
+}
+.card:hover{
+transform:translateY(-8px);
+border-color:#990000;
+box-shadow:0 15px 40px rgba(120,0,0,.2)
+}
+.card img{
+width:100%;height:320px;object-fit:cover;
+display:block;transition:.4s
+}
+.card:hover img{transform:scale(1.04)}
+.card-info{padding:22px}
+.card-rank{color:#c00000;font-size:11px;font-weight:bold;letter-spacing:2px}
+.card h3{font-size:21px;margin:9px 0}
+.card-date{font-size:12px;color:#666}
+.card p{font-size:13px;color:#888;line-height:1.6;margin-top:12px}
+
+.no-results{text-align:center;color:#666;padding:50px;display:none}
+
+.quote{
+min-height:480px;display:flex;align-items:center;justify-content:center;
+text-align:center;
+background:linear-gradient(rgba(70,0,0,.75),rgba(0,0,0,.94)),#160000
+}
+.quote-symbol{font-size:80px;color:#a00000}
+.quote h2{font-size:clamp(30px,5vw,65px);letter-spacing:3px}
+.quote h2 span{color:#d00000}
+.quote p{color:#999;margin-top:20px}
+
+.prisoner{background:#090909}
+.prisoner-box{
+max-width:950px;margin:auto;display:grid;
+grid-template-columns:380px 1fr;
+background:#111;border:1px solid #292929
+}
+.prisoner-box img{width:100%;height:430px;object-fit:cover}
+.prisoner-info{
+padding:50px;display:flex;flex-direction:column;justify-content:center
+}
+.badge{
+background:#800000;padding:7px 12px;width:max-content;
+font-size:10px;font-weight:bold;letter-spacing:2px;margin-bottom:20px
+}
+.prisoner-info h2{font-size:35px;margin-bottom:18px}
+.prisoner-info p{color:#888;line-height:1.8}
+
+footer{
+background:#040404;border-top:1px solid #222;
+padding:45px;text-align:center;color:#666
+}
+footer .logo{margin-bottom:15px}
+
+.modal{
+position:fixed;inset:0;background:rgba(0,0,0,.95);
+display:none;align-items:center;justify-content:center;
+flex-direction:column;z-index:9999;padding:30px
+}
+.modal.active{display:flex}
+.modal img{max-width:90%;max-height:80vh;object-fit:contain}
+.modal button{
+position:absolute;right:30px;top:20px;
+background:none;border:0;color:#fff;font-size:45px;cursor:pointer
+}
+.modal-caption{margin-top:15px;font-size:18px;font-weight:bold}
+
+/* ADMIN */
+.admin{
+position:fixed;inset:0;background:#080808;z-index:5000;
+display:none;overflow-y:auto
+}
+.admin.active{display:block}
+
+.admin-header{
+height:70px;background:#0d0d0d;border-bottom:1px solid #292929;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 6%
+}
+.admin-header strong{font-size:22px}
+.admin-header button,.admin-header a{
+background:none;border:0;color:#aaa;cursor:pointer;margin-left:15px
 }
 
-nav a {
-    color: #ddd;
-    text-decoration: none;
-    font-size: 14px;
-    transition: .3s;
+.admin-container{max-width:1150px;margin:auto;padding:50px 25px}
+.admin-title{
+display:flex;align-items:center;justify-content:space-between;margin-bottom:30px
+}
+.admin-title span{color:#b00000;font-size:11px;letter-spacing:3px}
+.admin-title h1{font-size:40px;margin-top:8px}
+.admin-count{color:#777}
+.admin-count strong{color:#c00000;font-size:30px}
+
+.admin-card{
+background:#111;border:1px solid #292929;padding:30px;margin-bottom:25px
+}
+.admin-card h2{margin-bottom:25px}
+
+.form-grid{
+display:grid;grid-template-columns:repeat(2,1fr);gap:18px
+}
+.form-group{margin-bottom:20px}
+.form-group label{
+display:block;color:#888;font-size:12px;margin-bottom:8px
+}
+.form-group input,.form-group textarea{
+width:100%;background:#080808;border:1px solid #292929;
+color:#fff;padding:13px;outline:none
 }
 
-nav a:hover {
-    color: #d00000;
+.admin-btn{
+padding:13px 22px;background:#8c0000;border:0;
+color:#fff;font-weight:bold;cursor:pointer
+}
+.admin-btn:hover{background:#b00000}
+
+.danger{
+padding:10px 15px;background:#400000;
+border:1px solid #700000;color:white;cursor:pointer
 }
 
-/* HERO */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    background:
-        linear-gradient(rgba(0,0,0,.73), rgba(0,0,0,.95)),
-        radial-gradient(circle at center, #5c0000 0%, #110000 35%, #050505 75%);
+.record{
+display:flex;align-items:center;gap:20px;
+padding:15px 0;border-top:1px solid #222
+}
+.record img{width:65px;height:65px;object-fit:cover}
+.record-info{flex:1}
+.record-info strong{display:block}
+.record-info span{font-size:12px;color:#777}
+.delete{
+background:#450000;color:white;border:1px solid #700000;
+padding:8px 12px;cursor:pointer
 }
 
-.hero::before {
-    content: "";
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    border: 1px solid rgba(180,0,0,.25);
-    border-radius: 50%;
-    animation: pulse 4s infinite;
+.login{
+position:fixed;inset:0;background:#050505;z-index:6000;
+display:none;align-items:center;justify-content:center
+}
+.login.active{display:flex}
+.login-box{
+width:390px;max-width:90%;background:#111;
+border:1px solid #292929;padding:40px;text-align:center
+}
+.login-box h2{margin:15px 0 10px}
+.login-box p{color:#777;margin-bottom:20px}
+.login-box input{
+width:100%;background:#080808;border:1px solid #292929;
+padding:14px;color:white;outline:none;margin-bottom:12px
+}
+.login-box small{display:block;color:#444;margin-top:15px}
+
+.hidden{display:none!important}
+
+@media(max-width:700px){
+
+nav{padding:0 4%}
+.nav-links{gap:10px}
+.nav-links a{font-size:10px}
+
+.stats{grid-template-columns:1fr}
+.stat{border-right:0;border-bottom:1px solid #222}
+
+.search{flex-direction:column}
+
+.prisoner-box{grid-template-columns:1fr}
+.prisoner-box img{height:350px}
+
+.form-grid{grid-template-columns:1fr}
+
+.admin-title{
+flex-direction:column;align-items:flex-start;gap:15px
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 20px;
-}
+.record{flex-wrap:wrap}
 
-.flag {
-    font-size: 70px;
-    margin-bottom: 20px;
-}
+section{padding:75px 5%}
 
-.hero h1 {
-    font-size: clamp(42px, 7vw, 82px);
-    font-weight: 900;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-}
-
-.hero h1 span {
-    color: #c40000;
-}
-
-.hero p {
-    margin-top: 20px;
-    color: #aaa;
-    font-size: 18px;
-    letter-spacing: 2px;
-}
-
-.btn {
-    display: inline-block;
-    margin-top: 35px;
-    padding: 15px 30px;
-    border: 1px solid #b00000;
-    color: white;
-    text-decoration: none;
-    transition: .3s;
-    font-weight: bold;
-}
-
-.btn:hover {
-    background: #b00000;
-    transform: translateY(-3px);
-}
-
-@keyframes pulse {
-    0%,100% {
-        transform: scale(.8);
-        opacity: .2;
-    }
-    50% {
-        transform: scale(1.1);
-        opacity: .5;
-    }
-}
-
-/* SECTIONS */
-section {
-    padding: 100px 7%;
-}
-
-.section-title {
-    text-align: center;
-    margin-bottom: 55px;
-}
-
-.section-title h2 {
-    font-size: 38px;
-    text-transform: uppercase;
-}
-
-.section-title h2::after {
-    content: "";
-    display: block;
-    width: 70px;
-    height: 3px;
-    background: #b00000;
-    margin: 15px auto;
-}
-
-.section-title p {
-    color: #888;
-}
-
-/* MARTYRS */
-.martyrs {
-    background: #0c0c0c;
-}
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    max-width: 1250px;
-    margin: auto;
-}
-
-.card {
-    background: #111;
-    border: 1px solid #242424;
-    overflow: hidden;
-    transition: .35s;
-    position: relative;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    border-color: #8d0000;
-    box-shadow: 0 15px 40px rgba(120,0,0,.18);
-}
-
-.card-img {
-    width: 100%;
-    height: 310px;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(25%);
-    transition: .4s;
-}
-
-.card:hover .card-img {
-    filter: grayscale(0%);
-    transform: scale(1.03);
-}
-
-.card-info {
-    padding: 22px;
-}
-
-.card-info h3 {
-    font-size: 21px;
-    margin-bottom: 8px;
-}
-
-.card-info .rank {
-    color: #b90000;
-    font-weight: bold;
-    font-size: 13px;
-    text-transform: uppercase;
-}
-
-.card-info p {
-    color: #888;
-    margin-top: 12px;
-    line-height: 1.6;
-    font-size: 14px;
-}
-
-/* QUOTE */
-.quote {
-    text-align: center;
-    background:
-        linear-gradient(rgba(80,0,0,.72), rgba(0,0,0,.88)),
-        #100000;
-    padding: 120px 10%;
-}
-
-.quote h2 {
-    font-size: clamp(28px, 5vw, 52px);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.quote h2 span {
-    color: #d00000;
-}
-
-.quote p {
-    margin-top: 20px;
-    color: #aaa;
-}
-
-/* PRISONER */
-.prisoner {
-    background: #090909;
-}
-
-.prisoner-box {
-    max-width: 950px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 350px 1fr;
-    background: #111;
-    border: 1px solid #292929;
-}
-
-.prisoner-box img {
-    width: 100%;
-    height: 420px;
-    object-fit: cover;
-}
-
-.prisoner-info {
-    padding: 45px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.badge {
-    display: inline-block;
-    width: fit-content;
-    background: #7d0000;
-    padding: 7px 12px;
-    font-size: 11px;
-    font-weight: bold;
-    margin-bottom: 18px;
-    letter-spacing: 1px;
-}
-
-.prisoner-info h2 {
-    font-size: 34px;
-    margin-bottom: 15px;
-}
-
-.prisoner-info p {
-    color: #999;
-    line-height: 1.8;
-}
-
-/* FOOTER */
-footer {
-    padding: 35px 7%;
-    text-align: center;
-    border-top: 1px solid #222;
-    background: #050505;
-    color: #666;
-    font-size: 13px;
-}
-
-footer strong {
-    color: #aaa;
-}
-
-/* MOBILE */
-@media (max-width: 750px) {
-
-    nav {
-        padding: 0 5%;
-    }
-
-    nav ul {
-        gap: 12px;
-    }
-
-    nav a {
-        font-size: 11px;
-    }
-
-    .hero h1 {
-        letter-spacing: 1px;
-    }
-
-    .hero p {
-        font-size: 14px;
-    }
-
-    section {
-        padding: 75px 5%;
-    }
-
-    .prisoner-box {
-        grid-template-columns: 1fr;
-    }
-
-    .prisoner-box img {
-        height: 330px;
-    }
-
-    .prisoner-info {
-        padding: 30px;
-    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <nav>
-    <div class="logo">VATAN<span>.</span></div>
+<div class="logo">VATAN<span>.</span></div>
 
-    <ul>
-        <li><a href="#anasayfa">Ana Sayfa</a></li>
-        <li><a href="#sehitler">Şehitlerimiz</a></li>
-        <li><a href="#tutuklu">Tutuklu</a></li>
-    </ul>
+<div class="nav-links">
+<a href="#anasayfa">Ana Sayfa</a>
+<a href="#sehitler">Şehitlerimiz</a>
+<a href="#tutuklu">Tutuklu</a>
+<a href="#" id="adminOpen">Yönetim</a>
+</div>
 </nav>
 
 
-<!-- HERO -->
 <header class="hero" id="anasayfa">
 
-    <div class="hero-content">
+<div class="flag">🇹🇷</div>
 
-        <div class="flag">🇹🇷</div>
+<div class="hero-content">
+<div class="hero-small">AZİZ HATIRALARINA</div>
 
-        <h1>ŞEHİTLERİMİZ</h1>
+<h1>ŞEHİTLERİMİZ</h1>
 
-        <p>
-            Unutmadık. Unutmayacağız.
-        </p>
+<div class="hero-text">
+Unutmadık. Unutmayacağız.
+</div>
 
-        <a href="#sehitler" class="btn">
-            ŞEHİTLERİMİZİ GÖR
-        </a>
-
-    </div>
+<a class="btn" href="#sehitler">
+ŞEHİTLERİMİZİ GÖR
+</a>
+</div>
 
 </header>
 
 
-<!-- MARTYRS -->
-<section class="martyrs" id="sehitler">
+<div class="stats">
 
-    <div class="section-title">
+<div class="stat">
+<strong id="count">0</strong>
+<span>Şehidimiz</span>
+</div>
 
-        <h2>Şehitlerimiz</h2>
+<div class="stat">
+<strong>∞</strong>
+<span>Unutulmayacak Hatıra</span>
+</div>
 
-        <p>
-            Vatan uğruna hayatını kaybeden kahramanlarımızın aziz hatırasına.
-        </p>
+<div class="stat">
+<strong>🇹🇷</strong>
+<span>Vatan</span>
+</div>
 
-    </div>
-
-
-    <div class="cards">
-
-
-        <!-- ŞEHİT 1 -->
-        <article class="card">
-
-            <img
-                class="card-img"
-                src="images/sehit1.jpg"
-                alt="Şehit fotoğrafı"
-            >
-
-            <div class="card-info">
-
-                <span class="rank">
-                    ŞEHİDİMİZ
-                </span>
-
-                <h3>Şehit İsmi Buraya</h3>
-
-                <p>
-                    Buraya şehidimiz hakkında kısa bilgi
-                    yazabilirsiniz.
-                </p>
-
-            </div>
-
-        </article>
+</div>
 
 
-        <!-- ŞEHİT 2 -->
-        <article class="card">
+<section id="sehitler">
 
-            <img
-                class="card-img"
-                src="images/sehit2.jpg"
-                alt="Şehit fotoğrafı"
-            >
+<div class="heading">
+<span>AZİZ HATIRALARINA</span>
+<h2>Şehitlerimiz</h2>
+<p>Vatan uğruna hayatını kaybeden kahramanlarımız.</p>
+</div>
 
-            <div class="card-info">
+<div class="search">
 
-                <span class="rank">
-                    ŞEHİDİMİZ
-                </span>
+<input
+id="search"
+type="text"
+placeholder="Şehit ismi ara..."
+>
 
-                <h3>Şehit İsmi Buraya</h3>
+<select id="sort">
+<option value="normal">Tüm kayıtlar</option>
+<option value="new">Yeni eklenenler</option>
+</select>
 
-                <p>
-                    Buraya şehidimiz hakkında kısa bilgi
-                    yazabilirsiniz.
-                </p>
+</div>
 
-            </div>
+<div class="cards" id="cards"></div>
 
-        </article>
-
-
-        <!-- ŞEHİT 3 -->
-        <article class="card">
-
-            <img
-                class="card-img"
-                src="images/sehit3.jpg"
-                alt="Şehit fotoğrafı"
-            >
-
-            <div class="card-info">
-
-                <span class="rank">
-                    ŞEHİDİMİZ
-                </span>
-
-                <h3>Şehit İsmi Buraya</h3>
-
-                <p>
-                    Buraya şehidimiz hakkında kısa bilgi
-                    yazabilirsiniz.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- ŞEHİT 4 -->
-        <article class="card">
-
-            <img
-                class="card-img"
-                src="images/sehit4.jpg"
-                alt="Şehit fotoğrafı"
-            >
-
-            <div class="card-info">
-
-                <span class="rank">
-                    ŞEHİDİMİZ
-                </span>
-
-                <h3>Şehit İsmi Buraya</h3>
-
-                <p>
-                    Buraya şehidimiz hakkında kısa bilgi
-                    yazabilirsiniz.
-                </p>
-
-            </div>
-
-        </article>
-
-    </div>
+<div class="no-results" id="noResults">
+Kayıt bulunamadı.
+</div>
 
 </section>
 
 
-<!-- SLOGAN -->
 <section class="quote">
 
-    <h2>
-        APO <span>PİÇTİR</span><br>
-        PİÇ KALACAK.
-    </h2>
+<div>
+<div class="quote-symbol">"</div>
 
-    <p>
-        Vatanın ve milletin bütünlüğüne karşı olan teröre karşı duruş.
-    </p>
+<h2>
+APO <span>PİÇTİR</span><br>
+PİÇ KALACAK.
+</h2>
+
+<p>Teröre karşı tavizsiz duruş.</p>
+</div>
 
 </section>
 
 
-<!-- PRISONER -->
 <section class="prisoner" id="tutuklu">
 
-    <div class="section-title">
+<div class="heading">
+<span>TUTUKLU</span>
+<h2>Tutuklu</h2>
+</div>
 
-        <h2>Tutuklu</h2>
+<div class="prisoner-box">
 
-        <p>
-            Tutuklu kişi hakkında bilgi ve görsel.
-        </p>
+<img id="pImage" src="images/tutuklu.jpg">
 
-    </div>
+<div class="prisoner-info">
 
+<div class="badge">TUTUKLU</div>
 
-    <div class="prisoner-box">
+<h2 id="pName">Abdullah Öcalan</h2>
 
-        <img
-            src="images/tutuklu.jpg"
-            alt="Tutuklu fotoğrafı"
-        >
+<p id="pDescription">
+Bu bölümde tutuklu kişi hakkında açıklama bulunabilir.
+</p>
 
+</div>
 
-        <div class="prisoner-info">
-
-            <span class="badge">
-                TUTUKLU
-            </span>
-
-            <h2>Abdullah Öcalan</h2>
-
-            <p>
-                Buraya istediğin açıklamayı,
-                tutukluluk bilgilerini veya sitenin
-                amacını yazabilirsin.
-            </p>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- FOOTER -->
 <footer>
 
-    <strong>ŞEHİTLERİMİZ</strong>
+<div class="logo">VATAN<span>.</span></div>
 
-    <br><br>
-
-    Aziz şehitlerimizin hatırasına saygıyla.
+<p>Aziz şehitlerimizin hatırasına saygıyla.</p>
 
 </footer>
 
 
+<!-- FOTOĞRAF MODALI -->
+
+<div class="modal" id="modal">
+
+<button id="closeModal">×</button>
+
+<img id="modalImage">
+
+<div class="modal-caption" id="modalCaption"></div>
+
+</div>
+
+
+<!-- GİRİŞ -->
+
+<div class="login" id="login">
+
+<div class="login-box">
+
+<div style="font-size:55px">🇹🇷</div>
+
+<h2>YÖNETİCİ GİRİŞİ</h2>
+
+<p>Yönetim paneline erişmek için şifreyi gir.</p>
+
+<input
+type="password"
+id="password"
+placeholder="Yönetici şifresi"
+>
+
+<button class="admin-btn" id="loginBtn">
+GİRİŞ YAP
+</button>
+
+<small>Varsayılan şifre: 1234</small>
+
+</div>
+
+</div>
+
+
+<!-- YÖNETİM PANELİ -->
+
+<div class="admin" id="admin">
+
+<div class="admin-header">
+
+<div>
+<strong>VATAN.</strong>
+<span style="color:#666"> Yönetim Paneli</span>
+</div>
+
+<div>
+<a href="#" id="siteBack">Site</a>
+<button id="logout">Çıkış</button>
+</div>
+
+</div>
+
+
+<div class="admin-container">
+
+<div class="admin-title">
+
+<div>
+<span>YÖNETİM</span>
+<h1>Şehit Kayıtları</h1>
+</div>
+
+<div class="admin-count">
+<strong id="adminCount">0</strong> kayıt
+</div>
+
+</div>
+
+
+<div class="admin-card">
+
+<h2>Yeni Şehit Ekle</h2>
+
+<form id="addForm">
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>İsim Soyisim</label>
+<input id="name" required placeholder="Örn: Mehmet Yılmaz">
+</div>
+
+<div class="form-group">
+<label>Rütbe / Görev</label>
+<input id="rank" placeholder="Örn: Uzman Çavuş">
+</div>
+
+<div class="form-group">
+<label>Tarih</label>
+<input id="date" placeholder="Örn: 15 Ağustos 2026">
+</div>
+
+<div class="form-group">
+<label>Fotoğraf yolu</label>
+<input id="image" placeholder="images/sehit1.jpg">
+</div>
+
+</div>
+
+<div class="form-group">
+<label>Açıklama</label>
+<textarea id="description" rows="4"></textarea>
+</div>
+
+<button class="admin-btn">
++ ŞEHİT EKLE
+</button>
+
+</form>
+
+</div>
+
+
+<div class="admin-card">
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+
+<h2>Mevcut Kayıtlar</h2>
+
+<button class="danger" id="clear">
+TÜMÜNÜ SİL
+</button>
+
+</div>
+
+<div id="records"></div>
+
+</div>
+
+
+<div class="admin-card">
+
+<h2>Tutuklu Bölümü</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>İsim</label>
+<input id="editPName">
+</div>
+
+<div class="form-group">
+<label>Fotoğraf</label>
+<input id="editPImage">
+</div>
+
+</div>
+
+<div class="form-group">
+<label>Açıklama</label>
+<textarea id="editPDescription" rows="4"></textarea>
+</div>
+
+<button class="admin-btn" id="saveP">
+TUTUKLU BİLGİLERİNİ KAYDET
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
 <script>
 
-/* NAVBAR SCROLL EFFECT */
+/* ================================
+   VERİ SİSTEMİ
+================================ */
 
-window.addEventListener("scroll", function () {
+const DEFAULT_DATA = [
 
-    const nav = document.querySelector("nav");
+{
+id:1,
+name:"Şehit İsmi Buraya",
+rank:"ŞEHİDİMİZ",
+date:"Tarih",
+image:"images/sehit1.jpg",
+description:"Şehidimiz hakkında kısa bilgi buraya yazılabilir.",
+created:Date.now()
+},
 
-    if (window.scrollY > 50) {
-        nav.style.background = "rgba(0,0,0,.98)";
-    } else {
-        nav.style.background = "rgba(5,5,5,.94)";
-    }
+{
+id:2,
+name:"Şehit İsmi Buraya",
+rank:"ŞEHİDİMİZ",
+date:"Tarih",
+image:"images/sehit2.jpg",
+description:"Şehidimiz hakkında kısa bilgi buraya yazılabilir.",
+created:Date.now()+1
+},
+
+{
+id:3,
+name:"Şehit İsmi Buraya",
+rank:"ŞEHİDİMİZ",
+date:"Tarih",
+image:"images/sehit3.jpg",
+description:"Şehidimiz hakkında kısa bilgi buraya yazılabilir.",
+created:Date.now()+2
+},
+
+{
+id:4,
+name:"Şehit İsmi Buraya",
+rank:"ŞEHİDİMİZ",
+date:"Tarih",
+image:"images/sehit4.jpg",
+description:"Şehidimiz hakkında kısa bilgi buraya yazılabilir.",
+created:Date.now()+3
+}
+
+];
+
+
+function getData(){
+
+let data=localStorage.getItem("martyrs");
+
+if(!data){
+
+localStorage.setItem(
+"martyrs",
+JSON.stringify(DEFAULT_DATA)
+);
+
+return DEFAULT_DATA;
+}
+
+try{
+return JSON.parse(data);
+}
+catch{
+return DEFAULT_DATA;
+}
+
+}
+
+
+function saveData(data){
+
+localStorage.setItem(
+"martyrs",
+JSON.stringify(data)
+);
+
+}
+
+
+/* ================================
+   GÜVENLİ METİN
+================================ */
+
+function safe(text){
+
+return String(text||"")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+
+/* ================================
+   KARTLAR
+================================ */
+
+function render(){
+
+const cards=document.getElementById("cards");
+
+if(!cards)return;
+
+let data=getData();
+
+const query=document
+.getElementById("search")
+.value
+.toLowerCase()
+.trim();
+
+const sort=document.getElementById("sort").value;
+
+
+if(query){
+
+data=data.filter(x=>
+
+x.name.toLowerCase().includes(query)||
+x.rank.toLowerCase().includes(query)||
+x.description.toLowerCase().includes(query)
+
+);
+
+}
+
+
+if(sort==="new"){
+
+data.sort((a,b)=>b.created-a.created);
+
+}
+
+
+cards.innerHTML="";
+
+
+document.getElementById("noResults").style.display=
+data.length?"none":"block";
+
+
+data.forEach(item=>{
+
+const card=document.createElement("div");
+
+card.className="card";
+
+card.innerHTML=`
+
+<img src="${safe(item.image)}"
+onerror="this.src='images/sehit1.jpg'">
+
+<div class="card-info">
+
+<div class="card-rank">
+${safe(item.rank)}
+</div>
+
+<h3>${safe(item.name)}</h3>
+
+<div class="card-date">
+${safe(item.date)}
+</div>
+
+<p>
+${safe(item.description)}
+</p>
+
+</div>
+
+`;
+
+
+card.onclick=()=>{
+
+document.getElementById("modalImage").src=item.image;
+
+document.getElementById("modalCaption").textContent=item.name;
+
+document.getElementById("modal").classList.add("active");
+
+};
+
+
+cards.appendChild(card);
 
 });
 
 
-/* KARTLARA TIKLAMA */
+document.getElementById("count").textContent=getData().length;
 
-document.querySelectorAll(".card").forEach(card => {
+document.getElementById("adminCount").textContent=getData().length;
 
-    card.addEventListener("click", function () {
+}
 
-        this.classList.toggle("selected");
 
-    });
+/* ================================
+   ARAMA
+================================ */
+
+document.getElementById("search")
+.addEventListener("input",render);
+
+document.getElementById("sort")
+.addEventListener("change",render);
+
+
+/* ================================
+   MODAL
+================================ */
+
+document.getElementById("closeModal").onclick=()=>{
+
+document.getElementById("modal")
+.classList.remove("active");
+
+};
+
+
+document.getElementById("modal").onclick=e=>{
+
+if(e.target.id==="modal"){
+
+document.getElementById("modal")
+.classList.remove("active");
+
+}
+
+};
+
+
+document.addEventListener("keydown",e=>{
+
+if(e.key==="Escape"){
+
+document.getElementById("modal")
+.classList.remove("active");
+
+}
 
 });
 
 
-/* SAYFA AÇILINCA FADE */
+/* ================================
+   ADMIN GİRİŞ
+================================ */
 
-document.body.style.opacity = "0";
+document.getElementById("adminOpen").onclick=e=>{
 
-window.addEventListener("load", function () {
+e.preventDefault();
 
-    document.body.style.transition = "opacity .7s ease";
+document.getElementById("login")
+.classList.add("active");
 
-    setTimeout(() => {
-        document.body.style.opacity = "1";
-    }, 100);
+};
+
+
+document.getElementById("loginBtn").onclick=()=>{
+
+const pass=document.getElementById("password").value;
+
+if(pass==="1234"){
+
+document.getElementById("login")
+.classList.remove("active");
+
+document.getElementById("admin")
+.classList.add("active");
+
+renderAdmin();
+
+loadPrisoner();
+
+}else{
+
+alert("Şifre yanlış!");
+
+}
+
+};
+
+
+document.getElementById("password").onkeydown=e=>{
+
+if(e.key==="Enter"){
+
+document.getElementById("loginBtn").click();
+
+}
+
+};
+
+
+/* ================================
+   ADMIN KAYITLAR
+================================ */
+
+function renderAdmin(){
+
+const records=document.getElementById("records");
+
+records.innerHTML="";
+
+getData().forEach(item=>{
+
+const row=document.createElement("div");
+
+row.className="record";
+
+row.innerHTML=`
+
+<img src="${safe(item.image)}"
+onerror="this.src='images/sehit1.jpg'">
+
+<div class="record-info">
+
+<strong>${safe(item.name)}</strong>
+
+<span>
+${safe(item.rank)}
+${item.date?" • "+safe(item.date):""}
+</span>
+
+</div>
+
+<button class="delete">
+SİL
+</button>
+
+`;
+
+
+row.querySelector(".delete").onclick=()=>{
+
+if(confirm("Bu kaydı silmek istediğine emin misin?")){
+
+let data=getData();
+
+data=data.filter(x=>x.id!==item.id);
+
+saveData(data);
+
+render();
+
+renderAdmin();
+
+}
+
+};
+
+
+records.appendChild(row);
 
 });
+
+document.getElementById("adminCount").textContent=getData().length;
+
+}
+
+
+/* ================================
+   ŞEHİT EKLEME
+================================ */
+
+document.getElementById("addForm").onsubmit=e=>{
+
+e.preventDefault();
+
+
+const item={
+
+id:Date.now(),
+
+name:document.getElementById("name").value.trim(),
+
+rank:document.getElementById("rank").value.trim()||"ŞEHİDİMİZ",
+
+date:document.getElementById("date").value.trim(),
+
+image:document.getElementById("image").value.trim()||"images/sehit1.jpg",
+
+description:document.getElementById("description").value.trim(),
+
+created:Date.now()
+
+};
+
+
+let data=getData();
+
+data.push(item);
+
+saveData(data);
+
+
+e.target.reset();
+
+render();
+
+renderAdmin();
+
+alert("Şehit kaydı eklendi.");
+
+};
+
+
+/* ================================
+   TÜMÜNÜ SİL
+================================ */
+
+document.getElementById("clear").onclick=()=>{
+
+if(!confirm("Bütün kayıtlar silinecek. Emin misin?"))
+return;
+
+localStorage.removeItem("martyrs");
+
+render();
+
+renderAdmin();
+
+};
+
+
+/* ================================
+   TUTUKLU
+================================ */
+
+function getPrisoner(){
+
+const data=localStorage.getItem("prisoner");
+
+if(data){
+
+try{
+return JSON.parse(data);
+}
+catch{}
+
+}
+
+return{
+
+name:"Abdullah Öcalan",
+
+image:"images/tutuklu.jpg",
+
+description:"Bu bölümde tutuklu kişi hakkında açıklama bulunabilir."
+
+};
+
+}
+
+
+function loadPrisoner(){
+
+const p=getPrisoner();
+
+document.getElementById("editPName").value=p.name;
+
+document.getElementById("editPImage").value=p.image;
+
+document.getElementById("editPDescription").value=p.description;
+
+}
+
+
+function renderPrisoner(){
+
+const p=getPrisoner();
+
+document.getElementById("pName").textContent=p.name;
+
+document.getElementById("pImage").src=p.image;
+
+document.getElementById("pDescription").textContent=p.description;
+
+}
+
+
+document.getElementById("saveP").onclick=()=>{
+
+const p={
+
+name:document.getElementById("editPName").value.trim(),
+
+image:document.getElementById("editPImage").value.trim(),
+
+description:document.getElementById("editPDescription").value.trim()
+
+};
+
+localStorage.setItem("prisoner",JSON.stringify(p));
+
+renderPrisoner();
+
+alert("Tutuklu bilgileri kaydedildi.");
+
+};
+
+
+/* ================================
+   ADMIN KAPAT
+================================ */
+
+document.getElementById("logout").onclick=()=>{
+
+document.getElementById("admin")
+.classList.remove("active");
+
+};
+
+
+document.getElementById("siteBack").onclick=e=>{
+
+e.preventDefault();
+
+document.getElementById("admin")
+.classList.remove("active");
+
+};
+
+
+/* ================================
+   BAŞLAT
+================================ */
+
+render();
+
+renderPrisoner();
 
 </script>
 
