@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şehitlerimizi Anıyoruz</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #121212; 
+            color: #ffffff; 
+            margin: 0; 
+            padding: 0; 
+            text-align: center; 
+        }
+        header { 
+            background-color: #b30000; 
+            padding: 30px; 
+            border-bottom: 3px solid #ffffff;
+        }
+        h1 { 
+            margin: 0; 
+            font-size: 2.5em; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .container { 
+            padding: 40px 20px; 
+        }
+        .martyrs-grid { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 30px; 
+            margin-top: 30px; 
+        }
+        .martyr-card { 
+            background-color: #1e1e1e; 
+            padding: 15px; 
+            border-radius: 8px; 
+            width: 220px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            border: 1px solid #333; 
+        }
+        .martyr-card img { 
+            width: 100%; 
+            height: 250px; 
+            object-fit: cover; 
+            border-radius: 4px; 
+        }
+        .martyr-name { 
+            margin-top: 15px; 
+            font-size: 1.2em;
+            font-weight: bold; 
+            color: #e0e0e0;
+        }
+        .bottom-section { 
+            margin-top: 50px; 
+            padding: 50px 20px; 
+            background-color: #000000; 
+            border-top: 2px solid #b30000; 
+        }
+        .statement { 
+            font-size: 2em; 
+            font-weight: bold; 
+            color: #ff3333; 
+            margin-bottom: 30px; 
+            text-transform: uppercase;
+        }
+        .arrest-photo { 
+            max-width: 100%; 
+            width: 400px;
+            border-radius: 8px; 
+            border: 3px solid #555; 
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Vatan Size Minnettardır</h1>
+    </header>
+
+    <div class="container">
+        <h2>Şehitlerimiz</h2>
+        <div class="martyrs-grid">
+            
+            <!-- 1. Şehit Kartı -->
+            <div class="martyr-card">
+                <img src="sehit1.jpg" alt="Şehit Fotoğrafı">
+                <div class="martyr-name">Şehit İsim Soyisim</div>
+            </div>
+
+            <!-- 2. Şehit Kartı -->
+            <div class="martyr-card">
+                <img src="sehit2.jpg" alt="Şehit Fotoğrafı">
+                <div class="martyr-name">Şehit İsim Soyisim</div>
+            </div>
+
+            <!-- 3. Şehit Kartı -->
+            <div class="martyr-card">
+                <img src="sehit3.jpg" alt="Şehit Fotoğrafı">
+                <div class="martyr-name">Şehit İsim Soyisim</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="bottom-section">
+        <div class="statement">apo piçtir piç kalacak</div>
+        <img src="tutuklu.jpg" alt="Tutuklu Fotoğrafı" class="arrest-photo">
+    </div>
+
+</body>
+</html>
