@@ -1,160 +1,297 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Şehitlerimizi Anıyoruz</title>
-    <!-- Lüks görünüm için Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --gold: #d4af37;
-            --dark-red: #8b0000;
-            --black-bg: #0a0a0a;
-            --card-bg: #141414;
-        }
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            background-color: var(--black-bg); 
-            background-image: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
-            color: #ffffff; 
-            margin: 0; 
-            padding: 0; 
-            text-align: center; 
-            min-height: 100vh;
-        }
-        header { 
-            padding: 60px 20px; 
-            background: linear-gradient(to bottom, rgba(139,0,0,0.8), transparent);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        h1 { 
-            font-family: 'Cinzel', serif;
-            margin: 0; 
-            font-size: 3.5em; 
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            text-shadow: 2px 2px 15px rgba(212, 175, 55, 0.5);
-        }
-        .container { 
-            padding: 70px 20px; 
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5em;
-            color: #ffffff;
-            margin-bottom: 50px;
-            letter-spacing: 2px;
-            border-bottom: 2px solid var(--dark-red);
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-        .martyrs-grid { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 40px; 
-        }
-        .martyr-card { 
-            background-color: var(--card-bg); 
-            padding: 15px; 
-            border-radius: 12px; 
-            width: 300px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.9);
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-            text-align: left; 
-        }
-        .martyr-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 40px rgba(139, 0, 0, 0.5);
-            border-color: var(--dark-red);
-        }
-        .martyr-card img { 
-            width: 100%; 
-            height: 350px; 
-            object-fit: cover; 
-            border-radius: 8px; 
-            filter: contrast(110%);
-        }
-        .martyr-name { 
-            margin-top: 20px; 
-            margin-bottom: 10px;
-            font-size: 1.3em;
-            font-weight: 600; 
-            color: var(--gold);
-            letter-spacing: 1px;
-            text-align: center;
-        }
-        .martyr-story {
-            font-size: 0.9em;
-            color: #cccccc;
-            line-height: 1.5;
-            padding: 0 10px;
-            margin-bottom: 15px;
-        }
-        .bottom-section { 
-            margin-top: 60px; 
-            padding: 80px 20px; 
-            background: linear-gradient(to top, #050000, #000000); 
-            border-top: 1px solid rgba(255,0,0,0.2); 
-        }
-        .statement { 
-            font-family: 'Cinzel', serif;
-            font-size: 2.8em; 
-            font-weight: 700; 
-            color: #ff1a1a; 
-            margin-bottom: 40px; 
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            text-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
-            text-align: center;
-        }
-        .arrest-photo { 
-            max-width: 100%; 
-            width: 500px;
-            border-radius: 12px; 
-            border: 2px solid #333; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Şehitlerimizi Anıyoruz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #141821;
+    --bg-panel: #1b2130;
+    --ivory: #f2ede2;
+    --ivory-dim: #b9b3a4;
+    --crimson: #8f2430;
+    --gold: #b8935a;
+    --line: rgba(184,147,90,0.25);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  body{
+    background: var(--bg);
+    color: var(--ivory);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* subtle vertical texture */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(143,36,48,0.18), transparent 55%),
+      radial-gradient(ellipse at 50% 110%, rgba(184,147,90,0.08), transparent 60%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  header{
+    position:relative;
+    z-index:1;
+    text-align:center;
+    padding: 6rem 1.5rem 4rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .eyebrow{
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  h1{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    letter-spacing: 0.02em;
+    color: var(--ivory);
+  }
+
+  .subtitle{
+    margin-top: 1.2rem;
+    font-size: 1.05rem;
+    color: var(--ivory-dim);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+  }
+
+  /* flame */
+  .flame-wrap{
+    width: 14px;
+    height: 28px;
+    margin: 0 auto 1.8rem;
+    position: relative;
+  }
+  .flame{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, var(--gold), var(--crimson));
+    border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+    transform-origin: bottom center;
+    animation: flicker 2.6s ease-in-out infinite;
+    filter: drop-shadow(0 0 6px rgba(184,147,90,0.6));
+  }
+  @keyframes flicker{
+    0%,100%{ transform: scaleY(1) scaleX(1) rotate(0deg); }
+    25%{ transform: scaleY(1.08) scaleX(0.94) rotate(-2deg); }
+    50%{ transform: scaleY(0.95) scaleX(1.05) rotate(1deg); }
+    75%{ transform: scaleY(1.05) scaleX(0.97) rotate(2deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .flame{ animation: none; }
+  }
+
+  main{
+    position:relative;
+    z-index:1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 6rem;
+  }
+
+  .notice{
+    max-width: 640px;
+    margin: 0 auto 3.5rem;
+    text-align:center;
+    font-size: 0.9rem;
+    color: var(--ivory-dim);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1rem 1.4rem;
+    background: rgba(184,147,90,0.05);
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 2.2rem;
+  }
+
+  .card{
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 2rem 1.5rem 1.8rem;
+    text-align:center;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .card:hover{
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  .photo-slot{
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 1.3rem;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: #10141d;
+    color: var(--ivory-dim);
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    overflow:hidden;
+  }
+  .photo-slot img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+  }
+
+  .name{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.35rem;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.3rem;
+  }
+
+  .rank{
+    font-size: 0.78rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.6rem;
+  }
+
+  .dates{
+    font-size: 0.85rem;
+    color: var(--ivory-dim);
+  }
+
+  .divider-line{
+    width: 40px;
+    height: 1px;
+    background: var(--line);
+    margin: 0.9rem auto;
+  }
+
+  .location{
+    margin-top: 0.9rem;
+    font-size: 0.78rem;
+    color: var(--crimson);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+  .location::before{
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--crimson);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .story{
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--line);
+    font-size: 0.85rem;
+    color: var(--ivory-dim);
+    text-align: left;
+    line-height: 1.65;
+  }
+
+  footer{
+    position:relative;
+    z-index:1;
+    text-align:center;
+    padding: 3rem 1.5rem 4rem;
+    border-top: 1px solid var(--line);
+    color: var(--ivory-dim);
+    font-size: 0.85rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+  }
+
+  @media (max-width: 480px){
+    header{ padding: 4rem 1.2rem 3rem; }
+    main{ padding: 3rem 1.2rem 4rem; }
+  }
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>Vatan Size Minnettardır</h1>
-    </header>
+<header>
+  <div class="flame-wrap"><div class="flame"></div></div>
+  <div class="eyebrow">Aziz Hatıralarına</div>
+  <h1>Şehitlerimizi Anıyoruz</h1>
+  <p class="subtitle">Vatan uğruna canlarını verenler, gönüllerde yaşamaya devam eder.</p>
+</header>
 
-    <div class="container">
-        <h2>Şehitlerimiz</h2>
-        <div class="martyrs-grid">
-            
-            <!-- 1. ŞEHİT KARTI: ÖMER HALİSDEMİR -->
-            <div class="martyr-card">
-                <img src="omer.png" alt="Şehit Fotoğrafı">
-                <div class="martyr-name">Ömer Halisdemir</div>
-                <p class="martyr-story">15 Temmuz darbe girişimi sırasında Özel Kuvvetler Komutanlığı'na girmeye çalışan darbeci generali vurarak girişimin seyrini değiştirmiş ve ardından kahramanca şehit edilmiştir.</p>
-            </div>
+<main>
+  <div class="notice">
+    Bu sayfa örnek bir düzendir. Kartlardaki isim, rütbe ve tarihleri kendi bilgilerinizle,
+    fotoğraf alanlarını ise kendi yükleyeceğiniz gerçek fotoğraflarla değiştirebilirsiniz.
+    Aşağıdaki isimler ve fotoğraf çerçeveleri yalnızca yer tutucudur.
+  </div>
 
-            <!-- 2. ŞEHİT KARTI: FETHİ SEKİN -->
-            <div class="martyr-card">
-                <img src="fethi.jpg" alt="Şehit Fotoğrafı">
-                <div class="martyr-name">Fethi Sekin</div>
-                <p class="martyr-story">5 Ocak 2017'de İzmir Adliyesi önünde düzenlenen terör saldırısında, teröristlerle son mermisine kadar çatışarak büyük bir faciayı önlemiş ve şehit düşmüştür.</p>
-            </div>
-
-        </div>
+  <div class="grid" id="memorial-grid">
+    <!-- Her kart bir şehidi temsil eder. Kopyalayıp çoğaltabilirsiniz. -->
+    <div class="card">
+      <div class="photo-slot">Fotoğraf<br>Ekleyin</div>
+      <div class="name">İsim Soyisim</div>
+      <div class="rank">Rütbe / Görev</div>
+      <div class="divider-line"></div>
+      <div class="dates">Doğum: 19XX &nbsp;·&nbsp; Şehadet: 20XX</div>
     </div>
 
-    <div class="bottom-section">
-        <div class="statement">apo piçtir piç kalacak</div>
-        <img src="tutuklu.jpg" alt="Tutuklu Fotoğrafı" class="arrest-photo">
+    <div class="card">
+      <div class="photo-slot">Fotoğraf<br>Ekleyin</div>
+      <div class="name">İsim Soyisim</div>
+      <div class="rank">Rütbe / Görev</div>
+      <div class="divider-line"></div>
+      <div class="dates">Doğum: 19XX &nbsp;·&nbsp; Şehadet: 20XX</div>
     </div>
+
+    <div class="card">
+      <div class="photo-slot">Fotoğraf<br>Ekleyin</div>
+      <div class="name">İsim Soyisim</div>
+      <div class="rank">Rütbe / Görev</div>
+      <div class="divider-line"></div>
+      <div class="dates">Doğum: 19XX &nbsp;·&nbsp; Şehadet: 20XX</div>
+    </div>
+
+    <div class="card">
+      <div class="photo-slot">Fotoğraf<br>Ekleyin</div>
+      <div class="name">İsim Soyisim</div>
+      <div class="rank">Rütbe / Görev</div>
+      <div class="divider-line"></div>
+      <div class="dates">Doğum: 19XX &nbsp;·&nbsp; Şehadet: 20XX</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  "Onlar ki toprak için toprak oldular." — Aziz hatıraları önünde saygıyla.
+</footer>
 
 </body>
 </html>
