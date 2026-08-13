@@ -1,149 +1,651 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Şehitlerimizi Anıyoruz</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --gold: #d4af37;
-            --dark-red: #8b0000;
-            --black-bg: #0a0a0a;
-            --card-bg: #141414;
-        }
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            background-color: var(--black-bg); 
-            background-image: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
-            color: #ffffff; 
-            margin: 0; 
-            padding: 0; 
-            text-align: center; 
-            min-height: 100vh;
-        }
-        header { 
-            padding: 60px 20px; 
-            background: linear-gradient(to bottom, rgba(139,0,0,0.8), transparent);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        h1 { 
-            font-family: 'Cinzel', serif;
-            margin: 0; 
-            font-size: 3.5em; 
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            text-shadow: 2px 2px 15px rgba(212, 175, 55, 0.5);
-        }
-        .container { 
-            padding: 70px 20px; 
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5em;
-            color: #ffffff;
-            margin-bottom: 50px;
-            letter-spacing: 2px;
-            border-bottom: 2px solid var(--dark-red);
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-        .martyrs-grid { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 40px; 
-        }
-        .martyr-card { 
-            background-color: var(--card-bg); 
-            padding: 15px; 
-            border-radius: 12px; 
-            width: 280px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.9);
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-        }
-        .martyr-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 40px rgba(139, 0, 0, 0.5);
-            border-color: var(--dark-red);
-        }
-        .martyr-card img { 
-            width: 100%; 
-            height: 350px; 
-            object-fit: cover; 
-            border-radius: 8px; 
-            filter: contrast(110%);
-        }
-        .martyr-name { 
-            margin-top: 20px; 
-            margin-bottom: 10px;
-            font-size: 1.3em;
-            font-weight: 600; 
-            color: var(--gold);
-            letter-spacing: 1px;
-        }
-        .bottom-section { 
-            margin-top: 60px; 
-            padding: 80px 20px; 
-            background: linear-gradient(to top, #050000, #000000); 
-            border-top: 1px solid rgba(255,0,0,0.2); 
-        }
-        .statement { 
-            font-family: 'Cinzel', serif;
-            font-size: 2.8em; 
-            font-weight: 700; 
-            color: #ff1a1a; 
-            margin-bottom: 40px; 
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            text-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
-        }
-        .arrest-photo { 
-            max-width: 100%; 
-            width: 500px;
-            border-radius: 12px; 
-            border: 2px solid #333; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Şehitlerimiz | Vatan İçin</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #080808;
+    color: #fff;
+}
+
+/* NAVBAR */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: rgba(5,5,5,.94);
+    border-bottom: 1px solid #292929;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    z-index: 999;
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: #b00000;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #d00000;
+}
+
+/* HERO */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(rgba(0,0,0,.73), rgba(0,0,0,.95)),
+        radial-gradient(circle at center, #5c0000 0%, #110000 35%, #050505 75%);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border: 1px solid rgba(180,0,0,.25);
+    border-radius: 50%;
+    animation: pulse 4s infinite;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+
+.flag {
+    font-size: 70px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 82px);
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.hero h1 span {
+    color: #c40000;
+}
+
+.hero p {
+    margin-top: 20px;
+    color: #aaa;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 15px 30px;
+    border: 1px solid #b00000;
+    color: white;
+    text-decoration: none;
+    transition: .3s;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #b00000;
+    transform: translateY(-3px);
+}
+
+@keyframes pulse {
+    0%,100% {
+        transform: scale(.8);
+        opacity: .2;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: .5;
+    }
+}
+
+/* SECTIONS */
+section {
+    padding: 100px 7%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.section-title h2 {
+    font-size: 38px;
+    text-transform: uppercase;
+}
+
+.section-title h2::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 3px;
+    background: #b00000;
+    margin: 15px auto;
+}
+
+.section-title p {
+    color: #888;
+}
+
+/* MARTYRS */
+.martyrs {
+    background: #0c0c0c;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    max-width: 1250px;
+    margin: auto;
+}
+
+.card {
+    background: #111;
+    border: 1px solid #242424;
+    overflow: hidden;
+    transition: .35s;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: #8d0000;
+    box-shadow: 0 15px 40px rgba(120,0,0,.18);
+}
+
+.card-img {
+    width: 100%;
+    height: 310px;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(25%);
+    transition: .4s;
+}
+
+.card:hover .card-img {
+    filter: grayscale(0%);
+    transform: scale(1.03);
+}
+
+.card-info {
+    padding: 22px;
+}
+
+.card-info h3 {
+    font-size: 21px;
+    margin-bottom: 8px;
+}
+
+.card-info .rank {
+    color: #b90000;
+    font-weight: bold;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.card-info p {
+    color: #888;
+    margin-top: 12px;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* QUOTE */
+.quote {
+    text-align: center;
+    background:
+        linear-gradient(rgba(80,0,0,.72), rgba(0,0,0,.88)),
+        #100000;
+    padding: 120px 10%;
+}
+
+.quote h2 {
+    font-size: clamp(28px, 5vw, 52px);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.quote h2 span {
+    color: #d00000;
+}
+
+.quote p {
+    margin-top: 20px;
+    color: #aaa;
+}
+
+/* PRISONER */
+.prisoner {
+    background: #090909;
+}
+
+.prisoner-box {
+    max-width: 950px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    background: #111;
+    border: 1px solid #292929;
+}
+
+.prisoner-box img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+}
+
+.prisoner-info {
+    padding: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.badge {
+    display: inline-block;
+    width: fit-content;
+    background: #7d0000;
+    padding: 7px 12px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+}
+
+.prisoner-info h2 {
+    font-size: 34px;
+    margin-bottom: 15px;
+}
+
+.prisoner-info p {
+    color: #999;
+    line-height: 1.8;
+}
+
+/* FOOTER */
+footer {
+    padding: 35px 7%;
+    text-align: center;
+    border-top: 1px solid #222;
+    background: #050505;
+    color: #666;
+    font-size: 13px;
+}
+
+footer strong {
+    color: #aaa;
+}
+
+/* MOBILE */
+@media (max-width: 750px) {
+
+    nav {
+        padding: 0 5%;
+    }
+
+    nav ul {
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 11px;
+    }
+
+    .hero h1 {
+        letter-spacing: 1px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    section {
+        padding: 75px 5%;
+    }
+
+    .prisoner-box {
+        grid-template-columns: 1fr;
+    }
+
+    .prisoner-box img {
+        height: 330px;
+    }
+
+    .prisoner-info {
+        padding: 30px;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <header>
-        <h1>Vatan Size Minnettardır</h1>
-    </header>
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">VATAN<span>.</span></div>
 
-    <div class="container">
+    <ul>
+        <li><a href="#anasayfa">Ana Sayfa</a></li>
+        <li><a href="#sehitler">Şehitlerimiz</a></li>
+        <li><a href="#tutuklu">Tutuklu</a></li>
+    </ul>
+</nav>
+
+
+<!-- HERO -->
+<header class="hero" id="anasayfa">
+
+    <div class="hero-content">
+
+        <div class="flag">🇹🇷</div>
+
+        <h1>ŞEHİTLERİMİZ</h1>
+
+        <p>
+            Unutmadık. Unutmayacağız.
+        </p>
+
+        <a href="#sehitler" class="btn">
+            ŞEHİTLERİMİZİ GÖR
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- MARTYRS -->
+<section class="martyrs" id="sehitler">
+
+    <div class="section-title">
+
         <h2>Şehitlerimiz</h2>
-        <!-- Fotoğraflar buraya otomatik gelecek -->
-        <div class="martyrs-grid" id="otomatik-liste">
-            
-        </div>
+
+        <p>
+            Vatan uğruna hayatını kaybeden kahramanlarımızın aziz hatırasına.
+        </p>
+
     </div>
 
-    <div class="bottom-section">
-        <div class="statement">apo piçtir piç kalacak</div>
-        <img src="tutuklu.jpg" alt="Tutuklu Fotoğrafı" class="arrest-photo">
-    </div>
 
-    <!-- 100 Fotoğrafı Otomatik Kuran Kod -->
-    <script>
-        const liste = document.getElementById('otomatik-liste');
-        let toplamFotograf = 100; // Buradaki sayıyı kaç fotoğraf yüklersen ona göre değiştirebilirsin
+    <div class="cards">
 
-        for(let i = 1; i <= toplamFotograf; i++) {
-            liste.innerHTML += `
-            <div class="martyr-card">
-                <img src="${i}.jpg" alt="Şehit Fotoğrafı" onerror="this.parentElement.style.display='none'">
-                <div class="martyr-name">Şehidimiz</div>
+
+        <!-- ŞEHİT 1 -->
+        <article class="card">
+
+            <img
+                class="card-img"
+                src="images/sehit1.jpg"
+                alt="Şehit fotoğrafı"
+            >
+
+            <div class="card-info">
+
+                <span class="rank">
+                    ŞEHİDİMİZ
+                </span>
+
+                <h3>Şehit İsmi Buraya</h3>
+
+                <p>
+                    Buraya şehidimiz hakkında kısa bilgi
+                    yazabilirsiniz.
+                </p>
+
             </div>
-            `;
-        }
-    </script>
+
+        </article>
+
+
+        <!-- ŞEHİT 2 -->
+        <article class="card">
+
+            <img
+                class="card-img"
+                src="images/sehit2.jpg"
+                alt="Şehit fotoğrafı"
+            >
+
+            <div class="card-info">
+
+                <span class="rank">
+                    ŞEHİDİMİZ
+                </span>
+
+                <h3>Şehit İsmi Buraya</h3>
+
+                <p>
+                    Buraya şehidimiz hakkında kısa bilgi
+                    yazabilirsiniz.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- ŞEHİT 3 -->
+        <article class="card">
+
+            <img
+                class="card-img"
+                src="images/sehit3.jpg"
+                alt="Şehit fotoğrafı"
+            >
+
+            <div class="card-info">
+
+                <span class="rank">
+                    ŞEHİDİMİZ
+                </span>
+
+                <h3>Şehit İsmi Buraya</h3>
+
+                <p>
+                    Buraya şehidimiz hakkında kısa bilgi
+                    yazabilirsiniz.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- ŞEHİT 4 -->
+        <article class="card">
+
+            <img
+                class="card-img"
+                src="images/sehit4.jpg"
+                alt="Şehit fotoğrafı"
+            >
+
+            <div class="card-info">
+
+                <span class="rank">
+                    ŞEHİDİMİZ
+                </span>
+
+                <h3>Şehit İsmi Buraya</h3>
+
+                <p>
+                    Buraya şehidimiz hakkında kısa bilgi
+                    yazabilirsiniz.
+                </p>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- SLOGAN -->
+<section class="quote">
+
+    <h2>
+        APO <span>PİÇTİR</span><br>
+        PİÇ KALACAK.
+    </h2>
+
+    <p>
+        Vatanın ve milletin bütünlüğüne karşı olan teröre karşı duruş.
+    </p>
+
+</section>
+
+
+<!-- PRISONER -->
+<section class="prisoner" id="tutuklu">
+
+    <div class="section-title">
+
+        <h2>Tutuklu</h2>
+
+        <p>
+            Tutuklu kişi hakkında bilgi ve görsel.
+        </p>
+
+    </div>
+
+
+    <div class="prisoner-box">
+
+        <img
+            src="images/tutuklu.jpg"
+            alt="Tutuklu fotoğrafı"
+        >
+
+
+        <div class="prisoner-info">
+
+            <span class="badge">
+                TUTUKLU
+            </span>
+
+            <h2>Abdullah Öcalan</h2>
+
+            <p>
+                Buraya istediğin açıklamayı,
+                tutukluluk bilgilerini veya sitenin
+                amacını yazabilirsin.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <strong>ŞEHİTLERİMİZ</strong>
+
+    <br><br>
+
+    Aziz şehitlerimizin hatırasına saygıyla.
+
+</footer>
+
+
+<script>
+
+/* NAVBAR SCROLL EFFECT */
+
+window.addEventListener("scroll", function () {
+
+    const nav = document.querySelector("nav");
+
+    if (window.scrollY > 50) {
+        nav.style.background = "rgba(0,0,0,.98)";
+    } else {
+        nav.style.background = "rgba(5,5,5,.94)";
+    }
+
+});
+
+
+/* KARTLARA TIKLAMA */
+
+document.querySelectorAll(".card").forEach(card => {
+
+    card.addEventListener("click", function () {
+
+        this.classList.toggle("selected");
+
+    });
+
+});
+
+
+/* SAYFA AÇILINCA FADE */
+
+document.body.style.opacity = "0";
+
+window.addEventListener("load", function () {
+
+    document.body.style.transition = "opacity .7s ease";
+
+    setTimeout(() => {
+        document.body.style.opacity = "1";
+    }, 100);
+
+});
+
+</script>
 
 </body>
 </html>
